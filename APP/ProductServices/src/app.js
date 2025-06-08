@@ -7,6 +7,7 @@ const app = express()
 // middleware
 app.use(morgan("combined"))
 app.use(helmet())
+app.use(express.json())
 
 //database
 require("../src/config/database/database.config")

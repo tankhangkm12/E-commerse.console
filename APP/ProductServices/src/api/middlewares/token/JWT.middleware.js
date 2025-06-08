@@ -1,7 +1,7 @@
 const JWT = require("jsonwebtoken")
 require("dotenv").config()
 
-const SCRET_KEY = process.env.SCRET_KEY
+const SCRET_KEY =  process.env.SCRET_KEY
 
 const authenticateToken = (req,res,next) => {
     const authenHeader = (req.headers["authorization"])
@@ -9,15 +9,16 @@ const authenticateToken = (req,res,next) => {
         message : "Token not found"
     });
     const token = authenHeader.split(" ")[1]
-    JWT.verify(token,SCRET_KEY,(error,account)=>{
+    JWT.verify(token,SCRET_KEY,(error,account) => {
         if (error) return res.status(403).json({
             message : "Authentication Failed!",
             why : "token error!"
         })
+
         req.account = account
-        console.log("Account : ",account)
         next()
     })
+
 }
 
 module.exports = authenticateToken;
