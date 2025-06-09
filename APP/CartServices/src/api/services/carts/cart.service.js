@@ -56,5 +56,19 @@ class CartServices{
             products : carts
         })
     }
+
+    async getUsernameCart(req,res,next){
+        const username = req.params.username;
+        console.log(username)
+        const userCart= await CartModel.findOne({username});
+        console.log(userCart)
+        if (!userCart) return res.status(200).json({
+            message : "No have product in cart !!!"
+        })
+        return res.status(200).json({
+            message : "Get products in cart successfully !!!",
+            products : userCart.products
+        })
+    }
 }
 module.exports = new CartServices()

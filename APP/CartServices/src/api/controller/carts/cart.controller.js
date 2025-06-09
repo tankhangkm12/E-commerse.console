@@ -13,6 +13,10 @@ class CartController{
             message : "No enough permission!!!"
         })
     }
+    getUsernameCart(req,res,next){
+        console.log(req)
+        return CartService.getUsernameCart(req,res,next)
+    }
 }
 
 module.exports = new CartController()
