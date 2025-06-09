@@ -3,7 +3,7 @@ const CartModel = require("../../models/carts/cart.model")
 class CartServices{
     async addroductsToCart(req,res,next){
         const username = req.account.username;
-        const {products} = req.body;
+        const products = req.body;
         if (products.length === 0)  return res.status(401).json({
             message : "No have products are needed to add !!"
         })
